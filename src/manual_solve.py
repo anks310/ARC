@@ -10,13 +10,47 @@ import re
 ### result. Name them according to the task ID as in the three
 ### examples below. Delete the three examples. The tasks you choose
 ### must be in the data/training directory, not data/evaluation.
-def solve_6a1e5592(x):
+def solve_178fcbfb(x):
+    x_hat= x.copy()
+    for i in range(x_hat.shape[0]):
+        for j in range (x_hat.shape[1]):
+            if x_hat[i][j] == 3:
+                for k in range(x_hat.shape[1]):
+                    x_hat[i][k] =3
+
+            elif x_hat[i][j] == 1:
+                for k in range(x_hat.shape[1]):
+                    x_hat[i][k] =1
+
+            elif x_hat[i][j] == 2:
+                for k in range(x_hat.shape[0]):
+                    if x_hat[k][j] ==0:
+                        x_hat[k][j] =2     
+    x=x_hat
     return x
 
-def solve_b2862040(x):
-    return x
-
-def solve_05269061(x):
+def solve_a65b410d(x):
+    x_hat = x.copy()
+    B1=0;B2=0;G=0;B=0
+    pos1,pos2=0,0
+    for i in range(x_hat.shape[0]):
+        for j in range (x_hat.shape[1]):
+            if x_hat[i][j] ==2:
+                B2+=1
+                pos1,pos2=i,j 
+    G = B2+1
+    for g in reversed(range(pos1)):
+        for g_j in range(G):
+            x_hat[g][g_j]=3   
+        G +=1 
+        
+    B = B2-1;b_col = B2-1;p1=pos1
+    for b in range(B):
+        p1 +=1 
+        for b_j in range(b_col):
+            x_hat[p1][b_j]=1
+        b_col = b_col-1
+    x=x_hat
     return x
 
 
@@ -92,4 +126,3 @@ def show_result(x, y, yhat):
     print(np.all(y == yhat))
 
 if __name__ == "__main__": main()
-
