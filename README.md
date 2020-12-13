@@ -4,6 +4,9 @@ Changes within any file in ARC (done in local disk) will be pushed to the new de
 
 Master ARC repo has been forked (copied) from the original main "https://github.com/jmmcd/ARC" repository so that any revisions and alterations will be incorporated to the newly created repo under our account ("https://github.com/anks310/ARC") without any effect and modification on the original repo from where it is forked.
 
+### Our Solutions
+We decided to solve tasks 178fcbfb, ba97ae07, a65b410d, d4a91cb9, ea786f4a, 74dd1130 and a2fd1cf0 they are all of varying levels of difficulty
+
 # The Abstraction and Reasoning Corpus (ARC)
 
 This repository contains the ARC task data, as well as a browser-based interface for humans to try their hand at solving the tasks manually.
