@@ -1,4 +1,6 @@
 #!/usr/bin/python
+## Name: Akanksha | Student Id: 20231242 ; Sophia Cogan | Student Id: 16366736 
+### GitHub repository URL : https://github.com/anks310/ARC
 
 import os, sys
 import json
@@ -10,18 +12,22 @@ import re
 ### result. Name them according to the task ID as in the three
 ### examples below. Delete the three examples. The tasks you choose
 ### must be in the data/training directory, not data/evaluation.
+
 def solve_178fcbfb(x):
+    #"178fcbfb" include 3 task demonstration input-output pair and 1 test input grid.
+    #Task includes manipulation of 3 colours that are refered as number 1,2 and 3 
+    #blue(as 1), red (as 2), and green (as 3). If a cell has blue(1) or green(3) then each column against 
+    #that row will be turn to 1 or 3 but if a cell has number-2 then all the row corrsponding to tha colunm
+    #will be changed except those which has been already changed to 1 or 3. Solve function working for all input.
     x_hat= x.copy()
     for i in range(x_hat.shape[0]):
         for j in range (x_hat.shape[1]):
             if x_hat[i][j] == 3:
                 for k in range(x_hat.shape[1]):
                     x_hat[i][k] =3
-
             elif x_hat[i][j] == 1:
                 for k in range(x_hat.shape[1]):
                     x_hat[i][k] =1
-
             elif x_hat[i][j] == 2:
                 for k in range(x_hat.shape[0]):
                     if x_hat[k][j] ==0:
@@ -29,7 +35,27 @@ def solve_178fcbfb(x):
     x=x_hat
     return x
 
-def solve_a65b410d(x):
+def solve_ba97ae07(x):
+    #"ba97ae07" include 4 task demonstration input-output pair and 1 test input grid.
+    #Solution include- any number(refered as color) in matrix other than 0 will be mapped to every column of that row.
+    #Flip the color of the cell if the color(as number) matches with the color of the corresponding column or row
+    #with the color of the previous row or column. Solve function working for all input.    
+    x_hat= x.copy()
+    for i in range(x_hat.shape[0]):
+        if x_hat[i][0] !=0:
+            for j in range(x_hat.shape[1]):
+                if x_hat[i-1][j] !=0 and x_hat[i][j] !=x_hat[i][0]:
+                    x_hat[i][j] =x_hat[i][0]
+                elif x_hat[i-1][j] !=0 and  x_hat[i][j] ==x_hat[i][0]:
+                    x_hat[i][j] =x_hat[i-1][j]
+    x=x_hat               
+    return x
+
+def solve_a65b410d(x): 
+    #"a65b410d" includes 4 task demonstration input-output pair and 1 test input grid.
+    #Solution includes counting of red cells and its position. Then for loop used in reverse to fill the green cell
+    #above red with the increment on 1 column on every iteration. Again for loop used to fill the row-column with blue
+    #below red cell row-columns but incrementing the row and decrementing the column to match the pattern    
     x_hat = x.copy()
     B1=0;B2=0;G=0;B=0
     pos1,pos2=0,0
@@ -42,8 +68,7 @@ def solve_a65b410d(x):
     for g in reversed(range(pos1)):
         for g_j in range(G):
             x_hat[g][g_j]=3   
-        G +=1 
-        
+        G +=1        
     B = B2-1;b_col = B2-1;p1=pos1
     for b in range(B):
         p1 +=1 
@@ -149,12 +174,9 @@ def solve_ea786f4a(x):
     np.fill_diagonal(np.fliplr(x), [0])
     return x
 
-
 def solve_74dd1130(x):
-    #to solve this problem the opposite corners need to be swapped around
-    
+    #to solve this problem the opposite corners need to be swapped around    
     n = len(x)
- 
     # switch the top right triangle with the bottom left triangle
     for i in range(n):
         for j in range(i):
@@ -255,11 +277,72 @@ def solve_a2fd1cf0(x):
             for i in range(0,b-1):
                 if greenL[1] > redL[1]:
                     blue = blue -1
-                    x[redL[0],blue]=8
-
-         
-                   
+                    x[redL[0],blue]=8                  
+    
     return x
+
+def solve_484b58aa(x):
+    #"484b58aa" includes 4 task demonstration input-output pair and 1 test input grid.
+    #Solution Added- 1st for loop we will get all the diagonal starting from top left till the mid.
+    #2nd loop we will get diagonals starting from down right
+    #We can seen every diagonal follows a certain kind of pattern like aaaa.. or ababab.. so by checking the previous 
+    #values we will get the value from previous position to stamp on empty cell (of value 0)# for one input solve function is working.
+    x_hat = x.copy()
+    row =x_hat.shape[0]
+    col =x_hat.shape[1]
+    for k in range(col-1):
+        i=row-1
+        j=k
+        while j <= col-2: 
+            if x_hat[i][j] ==0:
+                prev1= x_hat[i+1][j-1]
+                prev2= x_hat[i+2][j-2]
+                prev3= x_hat[i+3][j-3]
+                
+                if prev1 == prev2 ==prev3:
+                    x_hat[i][j] =prev1
+                    
+                elif prev1 != prev2 and prev1 == prev3:
+                    x_hat[i][j] =prev2  
+                    
+                elif j-4 <= col-2 and i+4 <=row-1:
+                    prev4= x_hat[i+4][j-4]
+                    if prev1 != prev2 and prev1 != prev3 and prev3 != prev4 and prev1 ==prev4:
+                        x_hat[i][j] =prev3
+                        
+                elif j-5 <= col-2 and i+5 <=row-1:
+                    prev5= x_hat[i+5][j-5]
+                    if prev1 != prev2 and prev1 != prev3 and prev3 != prev4 and prev4 !=prev5 and prev5 == prev1:
+                        x_hat[i][j] =prev4                   
+            i=i-1
+            j=j+1    
+    
+    for k in range(row-1):
+        i=k;j=0
+        while i>=0:
+            if x_hat[i][j] ==0:
+                prev1= x_hat[i+1][j-1]
+                prev2= x_hat[i+2][j-2]
+                prev3= x_hat[i+3][j-3]
+                
+                if prev1 == prev2 ==prev3:
+                    x_hat[i][j] =prev1
+                elif prev1 != prev2 and prev1 == prev3:
+                    x_hat[i][j] =prev2 
+                
+                elif j-4 <= col-2 and i+4 <=row-1:
+                    prev4= x_hat[i+4][j-4]
+                    if prev1 != prev2 and prev1 != prev3 and prev3 != prev4 and prev1 ==prev4:
+                        x_hat[i][j] =prev3
+                
+                elif j-5 <= col-2 and i+5 <=row-1:
+                    prev5= x_hat[i+5][j-5]
+                    if prev1 != prev2 and prev1 != prev3 and prev3 != prev4 and prev4 !=prev5 and prev5 == prev1:
+                        x_hat[i][j] =prev4           
+            i=i-1
+            j=j+1
+    
+    return x_hat
 
 def main():
     # Find all the functions defined in this file whose names are
