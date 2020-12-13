@@ -92,21 +92,21 @@ def solve_d4a91cb9(x):
         #Move right
         if blueL[1] < redL[1]:
             b = redL[1] - blueL[1]
-            yellow1 = redL[1]
+            yellow = redL[1]
             for i in range(0,b):
                 #fill squares yellow (4) until in line with red
                 if blueL[1] < redL[1]:
-                    yellow1 = yellow1-1    
-                    x[redL[1]-1,yellow1]=4  
+                    yellow = yellow-1    
+                    x[redL[1]-1,yellow]=4  
         #move left
         if blueL[1] > redL[1]:
             b = blueL[1] - redL[1]
-            yellow1 = redL[1]
+            yellow = redL[1]
             for i in range(0,b):
                 #fill squares yellow (4) until in line with red
                 if blueL[1] > redL[1]:
-                    yellow1 = yellow1+1    
-                    x[redL[0],yellow1]=4
+                    yellow = yellow+1    
+                    x[redL[0],yellow]=4
                     
     #if blue is closer to the bottom than the top
     #blue must move up
@@ -123,24 +123,26 @@ def solve_d4a91cb9(x):
         #move right
         if blueL[1] < redL[1]:    
             b = redL[1] - blueL[1]
-            yellow1 = blueL[1]
+            yellow = blueL[1]
             for i in range(0,b-1):
                 if blueL[1] < redL[1]:
-                    yellow1 = yellow1 +1
-                    x[redL[0],yellow1]=4
+                    yellow = yellow +1
+                    x[redL[0],yellow]=4
                     
         #move left            
         if blueL[1] > redL[1]:   
             b = blueL[1] - redL[1]
-            yellow1 = redL[1]
+            yellow = redL[1]
             for i in range(0,b-1):
                 if blueL[1] > redL[1]:
-                    yellow1 = yellow1 -1
-                    x[redL[0],yellow1]=4          
+                    yellow = yellow -1
+                    x[redL[0],yellow]=4          
                     
     return x
 
 def solve_ea786f4a(x):
+    #this problem needs two diagonal lines to pass through the center
+    
     #fill diagonal top left to bottom right
     np.fill_diagonal(x,0, wrap=True)
     #fill reverse diagonal bottom left to top right
@@ -149,6 +151,7 @@ def solve_ea786f4a(x):
 
 
 def solve_74dd1130(x):
+    #to solve this problem the opposite corners need to be swapped around
     
     n = len(x)
  
@@ -160,8 +163,11 @@ def solve_74dd1130(x):
 
 
 def solve_a2fd1cf0(x):
+    
+    #this task is quite similar to task d4a91cb9 it only needed some minor adjustments
+    #in the 'move left' and 'move right' code
 
-#from red, yellow can only move left or right (horizontal)
+    #from red, yellow can only move left or right (horizontal)
     #from blue, yellow can only traavel up or down (verticle)
    
     #blue = 8
