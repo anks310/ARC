@@ -53,6 +53,207 @@ def solve_a65b410d(x):
     x=x_hat
     return x
 
+def solve_d4a91cb9(x):
+    
+    #from red, yellow can only move left or right (horizontal)
+    #from blue, yellow can only traavel up or down (verticle)
+    
+    #blue = 8
+    #red =2
+    #yellow = 4
+
+    #set inital  x and y to zero
+    x1=0
+    for arr in x:
+        y1=0
+        
+        #find location of blue and red (8&2) and update x & y with new coordinates
+        for i in arr:
+            if str(i) == "8":
+                blueL = (x1,y1)
+            elif str(i) == "2":
+                redL = (x1,y1)
+            y1+=1
+        x1+=1
+        
+    #Compare postions of blue and red locations. 
+    #If blue is closer to the top of the grid it must move down
+    
+    #move down
+    if blueL[0] < redL[0]: 
+        a = redL[0] - blueL[0]
+        yellow = blueL[0]
+        #making verticle yellow line down
+        for i in range(0,a):
+            if blueL[0] < redL[0]:
+                yellow = yellow+1    
+                x[yellow,blueL[1]]=4
+                
+        #Move right
+        if blueL[1] < redL[1]:
+            b = redL[1] - blueL[1]
+            yellow1 = redL[1]
+            for i in range(0,b):
+                #fill squares yellow (4) until in line with red
+                if blueL[1] < redL[1]:
+                    yellow1 = yellow1-1    
+                    x[redL[1]-1,yellow1]=4  
+        #move left
+        if blueL[1] > redL[1]:
+            b = blueL[1] - redL[1]
+            yellow1 = redL[1]
+            for i in range(0,b):
+                #fill squares yellow (4) until in line with red
+                if blueL[1] > redL[1]:
+                    yellow1 = yellow1+1    
+                    x[redL[0],yellow1]=4
+                    
+    #if blue is closer to the bottom than the top
+    #blue must move up
+    if blueL[0] > redL[0]:
+        
+        #make verticle yellow line up
+        a = blueL[0] - redL[0]
+        yellow = blueL[0]
+        for i in range(0,a):
+            if blueL[0] > redL[0]:
+                yellow = yellow-1    
+                x[yellow,blueL[1]]=4
+         
+        #move right
+        if blueL[1] < redL[1]:    
+            b = redL[1] - blueL[1]
+            yellow1 = blueL[1]
+            for i in range(0,b-1):
+                if blueL[1] < redL[1]:
+                    yellow1 = yellow1 +1
+                    x[redL[0],yellow1]=4
+                    
+        #move left            
+        if blueL[1] > redL[1]:   
+            b = blueL[1] - redL[1]
+            yellow1 = redL[1]
+            for i in range(0,b-1):
+                if blueL[1] > redL[1]:
+                    yellow1 = yellow1 -1
+                    x[redL[0],yellow1]=4          
+                    
+    return x
+
+def solve_ea786f4a(x):
+    #fill diagonal top left to bottom right
+    np.fill_diagonal(x,0, wrap=True)
+    #fill reverse diagonal bottom left to top right
+    np.fill_diagonal(np.fliplr(x), [0])
+    return x
+
+
+def solve_74dd1130(x):
+    
+    n = len(x)
+ 
+    # switch the top right triangle with the bottom left triangle
+    for i in range(n):
+        for j in range(i):
+            x[i][j], x[j][i] = x[j][i], x[i][j]
+    return x
+
+
+def solve_a2fd1cf0(x):
+
+#from red, yellow can only move left or right (horizontal)
+    #from blue, yellow can only traavel up or down (verticle)
+   
+    #blue = 8
+    #red =2
+    #green = 3
+
+    #set inital  x and y to zero
+    x1=0
+    for arr in x:
+        y1=0
+       
+        #find location of green and red (3&2) and update x & y with new coordinates
+        for i in arr:
+            if i == 3:
+                greenL = (x1,y1)
+            elif i == 2:
+                redL = (x1,y1)
+            y1+=1
+        x1+=1
+    
+       
+    #Compare postions of blue and red locations.
+    #If green is closer to the top of the grid it must move down
+   
+    #move down
+    if greenL[0] < redL[0]:
+        
+        a = redL[0] - greenL[0]
+        blue = greenL[0]
+        #making verticle blue line down
+        for i in range(0,a):
+            if greenL[0] < redL[0]:
+                blue = blue+1    
+                x[blue,greenL[1]]=8
+               
+        #Move right
+        if greenL[1] < redL[1]:
+            
+            b = abs(redL[1] - greenL[1])
+           
+            blue = redL[1]
+            for i in range(0,b-1):
+                #fill squares blue (8) until in line with red
+                if greenL[1] < redL[1]:
+                    blue = blue+1    
+                    x[redL[1]-1,blue]=8  
+        #move left
+        if greenL[1] > redL[1]:
+            
+            b = abs(redL[1] - greenL[1])
+            blue = greenL[1]
+            for i in range(0,b-1):
+                #fill squares blue (8) until in line with red
+                if greenL[1] > redL[1]:
+                    blue = blue-1    
+                    x[redL[0],blue]=8
+                   
+    #if green  is closer to the bottom than the top
+    #green  must move up
+    if greenL[0] > redL[0]:
+        
+        #make verticle blue line up
+        a = greenL[0] - redL[0]
+        blue = greenL[0]
+        for i in range(0,a):
+            if greenL[0] > redL[0]:
+                blue = blue-1    
+                x[blue,greenL[1]]=8
+         
+        #move right
+        if greenL[1] < redL[1]:
+           
+            b = abs(redL[1] - greenL[1])
+            blue = greenL[1]
+            for i in range(0,b-1):
+                if greenL[1] < redL[1]:
+                    blue = blue +1
+                    x[redL[0],blue]=8
+                   
+        #move left            
+        if greenL[1] > redL[1]:
+            
+            b = abs(greenL[1] - redL[1])
+            blue = greenL[1]
+            for i in range(0,b-1):
+                if greenL[1] > redL[1]:
+                    blue = blue -1
+                    x[redL[0],blue]=8
+
+         
+                   
+    return x
 
 def main():
     # Find all the functions defined in this file whose names are
