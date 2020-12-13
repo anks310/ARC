@@ -9,6 +9,10 @@ A complete description of the dataset, its goals, and its underlying logic, can 
 As a reminder, a test-taker is said to solve a task when, upon seeing the task for the first time, they are able to produce the correct output grid for *all* test inputs in the task (this includes picking the dimensions of the output grid). For each test input, the test-taker is allowed 3 trials (this holds for all test-takers, either humans or AI).
 
 
+### Our Solutions
+
+We decided to solve tasks 178fcbfb, ba97ae07, a65b410d, d4a91cb9, ea786f4a, 74dd1130 and a2fd1cf0 they are all of varying levels of difficulty
+
 ## Task file format
 
 The `data` directory contains two subdirectories:
@@ -65,6 +69,4 @@ After you've obtained the correct answer for the current test input grid, you ca
 
 When you're done with a task, use the "load task" button to open a new task.
 
-### Our Solutions
 
-We decided to solve tasks 178fcbfb, a65b410d, d4a91cb9, ea786f4a, 74dd1130 and a2fd1cf0 they are all of varying levels of difficulty
