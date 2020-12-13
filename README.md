@@ -64,3 +64,7 @@ When your output grid is ready, click the green "Submit!" button to check your a
 After you've obtained the correct answer for the current test input grid, you can switch to the next test input grid for the task using the "Next test input" button (if there is any available; most tasks only have one test input).
 
 When you're done with a task, use the "load task" button to open a new task.
+
+### Our Solutions
+
+We decided to solve tasks 178fcbfb, a65b410d, d4a91cb9, ea786f4a, 74dd1130 and a2fd1cf0 they are all of varying levels of difficulty
