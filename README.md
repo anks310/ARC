@@ -1,3 +1,9 @@
+### Modification in "ARC_DEV" branch under "master" ARC branch within ARC Repository
+### Name: Akanksha | Student Id: 20231242 ; Sophia Cogan | Student Id: 16366736 
+Changes within any file in ARC (done in local disk) will be pushed to the new development branch created with the name - ARC_DEV which will be then merged to the master ARC branch once all the code changes are completed and reviewed. 
+
+Master ARC repo has been forked (copied) from the original main "https://github.com/jmmcd/ARC" repository so that any revisions and alterations will be incorporated to the newly created repo under our account ("https://github.com/anks310/ARC") without any effect and modification on the original repo from where it is forked.
+
 # The Abstraction and Reasoning Corpus (ARC)
 
 This repository contains the ARC task data, as well as a browser-based interface for humans to try their hand at solving the tasks manually.
